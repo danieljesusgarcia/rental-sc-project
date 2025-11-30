@@ -72,37 +72,13 @@ export const Unlock = () => {
           <div className='flex flex-col items-center gap-1'>
             <h2 className='text-2xl'>Inici de Sessió</h2>
 
-            <p className='text-center text-gray-400'>Tria un mètode d'autenticació</p>
+            <p className='text-center text-gray-400'>Connecta amb MultiversX Web Wallet</p>
           </div>
 
           <div className='flex flex-col md:flex-row'>
-            <WalletConnectLoginButton
-              loginButtonText='xPortal App'
+            <WebWalletLoginButton
+              loginButtonText='MultiversX Web Wallet'
               {...commonProps}
-            />
-            <LedgerLoginButton loginButtonText='Ledger' {...commonProps} />
-            <ExtensionLoginButton
-              loginButtonText='DeFi Wallet'
-              {...commonProps}
-            />
-            <OperaWalletLoginButton
-              loginButtonText='Opera Crypto Wallet - Beta'
-              {...commonProps}
-            />
-            <XaliasLoginWrapper {...commonProps} />
-            <WebWalletLoginWrapper {...commonProps} />
-            {isMobile && (
-              <IframeButton
-                loginButtonText='Passkey Proxy'
-                {...commonProps}
-                onClick={() => onInitiateLogin(IframeLoginTypes.passkey)}
-              />
-            )}
-
-            <IframeButton
-              loginButtonText='Metamask Proxy'
-              {...commonProps}
-              onClick={() => onInitiateLogin(IframeLoginTypes.metamask)}
             />
           </div>
         </div>
