@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import {
   AxiosInterceptorContext, // using this is optional
@@ -73,14 +73,12 @@ const AppContent = () => {
 };
 
 export const App = () => {
-  const basename = import.meta.env.VITE_BASE_PATH || '/';
-  
   return (
     <AxiosInterceptorContext.Provider>
       <AxiosInterceptorContext.Interceptor
         authenticatedDomains={sampleAuthenticatedDomains}
       >
-        <Router basename={basename}>
+        <Router>
           <BatchTransactionsContextProvider>
             <AppContent />
           </BatchTransactionsContextProvider>
