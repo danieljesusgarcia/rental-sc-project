@@ -332,62 +332,132 @@ export const ContractDetails = () => {
         )}
 
         {contract.status === ContractStatus.Completed && isLandlord && (
-          <div className='mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg'>
-            <h3 className='font-semibold mb-2'>Decisió sobre la Fiança Requerida</h3>
-            <p className='text-sm text-gray-600 mb-4'>
-              El període de lloguer ha finalitzat. Decideix si retornar la fiança al llogater.
-            </p>
-            <div className='grid grid-cols-2 gap-4'>
-              <button 
-                onClick={() => handleLandlordDecision(true)}
-                disabled={processing}
-                className='py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
-              >
-                {processing ? 'Processant...' : 'Retornar Fiança'}
-              </button>
-              <button 
-                onClick={() => handleLandlordDecision(false)}
-                disabled={processing}
-                className='py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
-              >
-                {processing ? 'Processant...' : 'Quedar-se Fiança'}
-              </button>
-            </div>
-          </div>
+          <>
+            {!depositDecisions || !depositDecisions.landlordDecided ? (
+              <div className='mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg'>
+                <h3 className='font-semibold mb-2'>Decisió sobre la Fiança Requerida</h3>
+                <p className='text-sm text-gray-600 mb-4'>
+                  El període de lloguer ha finalitzat. Decideix si retornar la fiança al llogater.
+                </p>
+                <div className='grid grid-cols-2 gap-4'>
+                  <button 
+                    onClick={() => handleLandlordDecision(true)}
+                    disabled={processing}
+                    className='py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
+                  >
+                    {processing ? 'Processant...' : 'Retornar Fiança'}
+                  </button>
+                  <button 
+                    onClick={() => handleLandlordDecision(false)}
+                    disabled={processing}
+                    className='py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
+                  >
+                    {processing ? 'Processant...' : 'Quedar-se Fiança'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className='mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg'>
+                <h3 className='font-semibold mb-2'>La Teva Decisió</h3>
+                <div className='flex items-center gap-2 mb-2'>
+                  <svg className='w-5 h-5 text-green-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
+                  </svg>
+                  <span className='font-medium'>
+                    {depositDecisions.landlordWantsReturn ? 'Retornar la fiança al llogater' : 'Quedar-se amb la fiança'}
+                  </span>
+                </div>
+                <p className='text-sm text-gray-600'>
+                  {depositDecisions.tenantDecided 
+                    ? 'Esperant la resolució final del contracte...' 
+                    : 'Esperant la decisió del llogater...'}
+                </p>
+              </div>
+            )}
+          </>
         )}
 
         {contract.status === ContractStatus.Completed && isTenant && (
-          <div className='mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg'>
-            <h3 className='font-semibold mb-2'>Decisió sobre la Fiança Requerida</h3>
-            <p className='text-sm text-gray-600 mb-4'>
-              El període de lloguer ha finalitzat. Indica si esperes recuperar la teva fiança.
-            </p>
-            <div className='grid grid-cols-2 gap-4'>
-              <button 
-                onClick={() => handleTenantDecision(true)}
-                disabled={processing}
-                className='py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
-              >
-                {processing ? 'Processant...' : 'Sol·licitar Retorn'}
-              </button>
-              <button 
-                onClick={() => handleTenantDecision(false)}
-                disabled={processing}
-                className='py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
-              >
-                {processing ? 'Processant...' : 'Renunciar a Fiança'}
-              </button>
-            </div>
-          </div>
+          <>
+            {!depositDecisions || !depositDecisions.tenantDecided ? (
+              <div className='mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg'>
+                <h3 className='font-semibold mb-2'>Decisió sobre la Fiança Requerida</h3>
+                <p className='text-sm text-gray-600 mb-4'>
+                  El període de lloguer ha finalitzat. Indica si esperes recuperar la teva fiança.
+                </p>
+                <div className='grid grid-cols-2 gap-4'>
+                  <button 
+                    onClick={() => handleTenantDecision(true)}
+                    disabled={processing}
+                    className='py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
+                  >
+                    {processing ? 'Processant...' : 'Sol·licitar Retorn'}
+                  </button>
+                  <button 
+                    onClick={() => handleTenantDecision(false)}
+                    disabled={processing}
+                    className='py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed'
+                  >
+                    {processing ? 'Processant...' : 'Renunciar a Fiança'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className='mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg'>
+                <h3 className='font-semibold mb-2'>La Teva Decisió</h3>
+                <div className='flex items-center gap-2 mb-2'>
+                  <svg className='w-5 h-5 text-green-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
+                  </svg>
+                  <span className='font-medium'>
+                    {depositDecisions.tenantWantsReturn ? 'Sol·licitar retorn de la fiança' : 'Renunciar a la fiança'}
+                  </span>
+                </div>
+                <p className='text-sm text-gray-600'>
+                  {depositDecisions.landlordDecided 
+                    ? 'Esperant la resolució final del contracte...' 
+                    : 'Esperant la decisió del propietari...'}
+                </p>
+              </div>
+            )}
+          </>
         )}
 
-        {contract.status === ContractStatus.InDispute && (
+        {contract.status === ContractStatus.InDispute && depositDecisions && (
           <div className='mt-6 p-4 bg-red-50 border border-red-200 rounded-lg'>
             <h3 className='font-semibold mb-2 text-red-800'>Contracte en Disputa</h3>
-            <p className='text-sm text-gray-600'>
+            <p className='text-sm text-gray-600 mb-4'>
               Hi ha un desacord sobre el retorn de la fiança. Ambdues parts han presentat decisions diferents.
               Això requereix una resolució manual.
             </p>
+            
+            <div className='bg-white p-4 rounded border border-red-200 mt-4'>
+              <h4 className='font-semibold mb-3'>Decisions de les parts:</h4>
+              <div className='space-y-2'>
+                <div className='flex items-start gap-2'>
+                  <svg className='w-5 h-5 text-gray-600 mt-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' />
+                  </svg>
+                  <div>
+                    <span className='font-medium'>Propietari{isLandlord && ' (Tu)'}:</span>
+                    <span className='ml-2 text-sm'>
+                      {depositDecisions.landlordWantsReturn ? 'Vol retornar la fiança' : 'Vol quedar-se amb la fiança'}
+                    </span>
+                  </div>
+                </div>
+                <div className='flex items-start gap-2'>
+                  <svg className='w-5 h-5 text-gray-600 mt-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
+                  </svg>
+                  <div>
+                    <span className='font-medium'>Llogater{isTenant && ' (Tu)'}:</span>
+                    <span className='ml-2 text-sm'>
+                      {depositDecisions.tenantWantsReturn ? 'Sol·licita retorn de la fiança' : 'Renuncia a la fiança'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
