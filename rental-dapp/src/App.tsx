@@ -73,12 +73,14 @@ const AppContent = () => {
 };
 
 export const App = () => {
+  const basename = import.meta.env.VITE_BASE_PATH || '/';
+  
   return (
     <AxiosInterceptorContext.Provider>
       <AxiosInterceptorContext.Interceptor
         authenticatedDomains={sampleAuthenticatedDomains}
       >
-        <Router>
+        <Router basename={basename}>
           <BatchTransactionsContextProvider>
             <AppContent />
           </BatchTransactionsContextProvider>
