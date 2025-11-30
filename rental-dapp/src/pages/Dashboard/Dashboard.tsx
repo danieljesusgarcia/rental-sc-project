@@ -65,6 +65,9 @@ export const Dashboard = () => {
           <p className='text-lg text-secondary max-w-2xl mx-auto'>
             Gestiona els teus contractes de lloguer a la blockchain MultiversX
           </p>
+          <p className='text-md text-secondary max-w-2xl mx-auto'>
+            Projecte desenvolupat en el curs "Blockchain a l'FP (3a ed)"
+          </p>          
         </div>
 
         <div className='grid md:grid-cols-2 gap-6 grid-cards'>
