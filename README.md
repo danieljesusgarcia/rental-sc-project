@@ -160,6 +160,15 @@ mxpy contract upgrade <hash_contracte> \
   npm run start:devnet
   ```
 
+**Mostres de l'aplicació**
+![alt text](images/dashboard.png)
+![alt text](images/create_contract.png)
+![alt text](images/myproperties.png)
+![alt text](images/contract_details.png)
+![alt text](images/payment.png)
+![alt text](images/payment_inprogress.png)
+![alt text](images/deposit_claim.png)
+
 - **URL en local**: http://localhost:3000 (devnet)
 
 ### Client CLI (Shell Script)
