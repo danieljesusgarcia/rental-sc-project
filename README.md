@@ -126,7 +126,7 @@ mxpy contract upgrade <hash_contracte> \
 
 ## Documentació tècnica del contracte
 
-- **[Documentació Rustdoc](docs/rental_contract/index.html)** - Documentació completa del codi font
+- **[Documentació Rustdoc](rental-contract/docs/rental_contract/index.html)** - Documentació completa del codi font
 
 ## Clients Disponibles
 
