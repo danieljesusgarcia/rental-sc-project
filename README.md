@@ -18,9 +18,9 @@ Smart contract que permet crear, gestionar i finalitzar contractes de lloguer en
 - **Sistema de decisió de fiança** al finalitzar. Si hi ha acord, es retorna la fiança al llogater o la reté el propietari.
 - **Si no hi ha acord, el contracte queda en disputa** i serà resolt per un àrbitre (no forma part del contracte)
 
-## Estructura del Contracte
+## Estats del contracte
 
-### Estats del Contracte
+### Definició
 
 ```rust
 pub enum ContractStatus {
@@ -65,6 +65,18 @@ graph LR
 | `getDepositDecisionDetails` | Obté l'estat de les decisions sobre la fiança |
 | `getPaymentsStatus` | Obté l'estat dels pagaments |
 
+## Validacions del Contracte
+
+- Verificació que el contracte existeix abans de qualsevol operació
+- Control d'estats: només es permeten operacions en estats vàlids
+- Pagaments: verificació d'import exacte i que el contracte està actiu
+- Decisions sobre fiança:
+  - Només es poden prendre quan el contracte ha acabat **O** està en estat `Completed`
+  - Això permet provar la funcionalitat sense esperar que acabi el temps del contracte
+  - Cada part només pot decidir una vegada
+  - Si hi ha acord, la fiança es retorna/reté automàticament
+  - Si hi ha desacord, el contracte passa a estat `InDispute`
+
 ## Desenvolupament
 
 ### Prerequisits
@@ -82,19 +94,9 @@ sc-meta all build
 # Output: output/rental-contract.wasm
 ```
 
-### Test
-
-```bash
-# Tests Rust
-cargo test
-
-# Tests Go (scenarios)
-cd tests && go test -v
-```
-
 ### Deploy
 
-El contracte es desplega a partir d'un wallet "wallet-owner.pem".
+El contracte es desplega fent servir un wallet, per exemple "wallet-owner.pem".
 
 ```bash
 # Desplegar a devnet
@@ -122,17 +124,16 @@ mxpy contract upgrade <hash_contracte> \
   --send
 ```
 
-## Documentació i Clients
-
-### Documentació del Contracte
+## Documentació tècnica del contracte
 
 - **[Documentació Rustdoc](docs/rental_contract/index.html)** - Documentació completa del codi font
 
-### Clients Disponibles
+## Clients Disponibles
 
-#### Client Web (dApp React)
+### Client Web (dApp React)
 
 - **Tecnologies**: React 18 + TypeScript + Vite + Tailwind CSS
+- **SDK**: @multiversx/sdk-dapp 3.1.6, @multiversx/sdk-core 13.16.0
 - **Característiques**:
   - Interfície web reactiva
   - Connexió amb DeFi Wallet, xPortal, Ledger
@@ -141,21 +142,22 @@ mxpy contract upgrade <hash_contracte> \
   - Notificacions de transaccions en temps real
 - **Instal·lació**:
   ```bash
-  
   cd rental-dapp
   npm install
   npm run start:devnet
   ```
 
-#### Client CLI (Shell Script)
+- **URL en local**: http://localhost:3000 (devnet)
 
-- **Fitxer**: [client.sh](client.sh)
+### Client CLI (Shell Script)
+
+- **Fitxer**: [rental-contract/client.sh](rental-contract/client.sh)
 - **Ús**: Interfície de línia de comandos per interactuar amb el contracte
 - **Execució**:
 
 ```bash
-  cd rental-contract
-  ./client.sh
+cd rental-contract
+./client.sh
 ```
 
 **Menú interactiu:**
@@ -181,42 +183,87 @@ En els endpoints de transacció, cal seleccionar amb quina wallet es vol operar.
 
 **Configuració del contracte:**
 
-client.sh ja incorpora un paràmetre `CONTRACT` per identificar el hash del contracte
+client.sh ja incorpora un paràmetre `CONTRACT` per identificar el hash del contracte. Caldrà modificar-lo per indicar el contracte a utilitzar.
 
 ## Estructura del Projecte
 
 ```
-rental-contract/
-├── src/
-│   └── rental_contract.rs      # Codi principal del contracte
-├── tests/
-│   ├── rental_contract_scenario_rs_test.rs
-│   └── rental_contract_scenario_go_test.rs
-├── scenarios/
-│   └── rental_contract.scen.json
-├── output/
-│   ├── rental-contract.wasm    # Contracte compilat
-│   ├── rental-contract.abi.json
-│   └── rental-contract.mxsc.json
-├── docs/                       # Documentació Rustdoc
-├── client.sh                   # Script d'interacció
-├── Cargo.toml
-└── README.md
+rental-sc-project/
+├── README.md                           # Documentació principal del projecte
+├── .gitignore                          # Exclusions Git del projecte
+│
+├── rental-contract/                    # Smart Contract (Rust)
+│   ├── src/
+│   │   └── rental_contract.rs          # Codi principal del contracte
+│   ├── tests/
+│   │   ├── rental_contract_scenario_rs_test.rs
+│   │   └── rental_contract_scenario_go_test.rs
+│   ├── scenarios/
+│   │   └── rental_contract.scen.json   # Escenaris de test
+│   ├── output/
+│   │   ├── rental-contract.wasm        # Contracte compilat (7461 bytes)
+│   │   ├── rental-contract.abi.json    # ABI del contracte
+│   │   └── rental-contract.mxsc.json   # Metadata del contracte
+│   ├── docs/                           # Documentació Rustdoc generada
+│   │   └── rental_contract/
+│   │       ├── index.html              # Entrada de la documentació
+│   │       ├── struct.RentalContractData.html
+│   │       └── ...                     # Documentació completa
+│   ├── meta/                           # Meta crate per builds
+│   ├── wasm/                           # Wasm builder crate
+│   ├── client.sh                       # Script CLI d'interacció
+│   ├── Cargo.toml                      # Dependencies Rust
+│   ├── multiversx.json                 # Configuració MultiversX
+│   └── .gitignore                      # Exclusions (target/, *.pem, output/)
+│
+└── rental-dapp/                        # Frontend dApp (React + TypeScript)
+    ├── public/                         # Assets estàtics
+    │   ├── favicon.ico
+    │   ├── manifest.json
+    │   └── ...                         # Imatges i icones
+    ├── src/
+    │   ├── App.tsx                     # Component principal
+    │   ├── index.tsx                   # Entry point
+    │   ├── components/                 # Components React
+    │   │   ├── CreateContractForm.tsx  # Formulari creació contracte
+    │   │   ├── Layout/                 # Layout i navegació
+    │   │   └── ...
+    │   ├── pages/                      # Pàgines de l'aplicació
+    │   │   ├── Dashboard/              # Dashboard principal
+    │   │   ├── ContractDetails/        # Detall d'un contracte
+    │   │   ├── Home/                   # Pàgina inicial
+    │   │   └── ...
+    │   ├── hooks/                      # Custom React hooks
+    │   │   └── useRentalContract.ts    # Hook d'interacció amb el contracte
+    │   ├── types/                      # Definicions TypeScript
+    │   │   └── rentalContract.types.ts # Types del contracte
+    │   ├── contracts/                  # ABI del contracte
+    │   │   └── rental-contract.abi.json
+    │   ├── config/                     # Configuració de xarxes
+    │   │   └── config.devnet.ts
+    │   ├── routes/                     # Definició de rutes
+    │   ├── services/                   # Serveis API
+    │   ├── helpers/                    # Funcions auxiliars
+    │   ├── utils/                      # Utilitats
+    │   ├── assets/                     # Recursos (imatges, fonts)
+    │   └── styles/                     # Estils globals
+    ├── scripts/                        # Scripts de build i deploy
+    ├── wdio/                           # Tests E2E WebdriverIO
+    ├── index.html                      # HTML principal
+    ├── package.json                    # Dependencies Node (1510 packages)
+    ├── package-lock.json
+    ├── tsconfig.json                   # Configuració TypeScript
+    ├── vite.config.ts                  # Configuració Vite
+    ├── tailwind.config.js              # Configuració Tailwind CSS
+    ├── postcss.config.js               # PostCSS config
+    ├── jest.config.js                  # Jest tests config
+    ├── .eslintrc                       # ESLint config
+    ├── .prettierrc                     # Prettier config
+    ├── .swcrc                          # SWC compiler config
+    └── .gitignore                      # Exclusions (node_modules/, *.pem)
 ```
 
-## Validacions del Contracte
-
-- Verificació que el contracte existeix abans de qualsevol operació
-- Control d'estats: només es permeten operacions en estats vàlids
-- Pagaments: verificació d'import exacte i que el contracte està actiu
-- Decisions sobre fiança:
-  - Només es poden prendre quan el contracte ha acabat **O** està en estat `Completed`
-  - Això permet provar la funcionalitat sense esperar que acabi el temps del contracte
-  - Cada part només pot decidir una vegada
-  - Si hi ha acord, la fiança es retorna/reté automàticament
-  - Si hi ha desacord, el contracte passa a estat `InDispute`
-
-## Exemples d'Ús amb mxpy
+## Exemples d'ús amb mxpy (endpoints i views)
 
 ### Crear un contracte
 
@@ -349,9 +396,6 @@ Aquest projecte està sota llicència MIT. Consulta el fitxer `LICENSE` per més
 - **Daniel Garcia** - Desenvolupament inicial
 
 ## 🔗 Enllaços
-
-### Projectes Relacionats
-- **[Rental dApp](https://github.com/tu-usuario/rental-dapp)** - Aplicació web React per interactuar amb el contracte
 
 ### Recursos MultiversX
 - [MultiversX Docs](https://docs.multiversx.com/)
