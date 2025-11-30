@@ -64,14 +64,14 @@ export const Unlock = () => {
 
   return (
     <AuthRedirectWrapper requireAuth={false}>
-      <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100'>
+      <div className='flex justify-center items-center min-h-screen' style={{ background: 'linear-gradient(to bottom right, #FAF9F7, #E0D5C9)' }}>
         <div className='max-w-md w-full mx-4'>
           <div
             className='flex flex-col p-8 items-center justify-center gap-6 rounded-2xl bg-white shadow-xl'
             data-testid='unlockPage'
           >
             {/* Logo/Icon */}
-            <div className='w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center'>
+            <div className='w-16 h-16 rounded-full flex items-center justify-center' style={{ backgroundColor: '#8B7355' }}>
               <svg className='w-10 h-10 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} 
                       d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' />
@@ -117,7 +117,7 @@ export const Unlock = () => {
 
             {/* Footer */}
             <p className='text-xs text-gray-400 text-center'>
-              Xarxa: <span className='font-semibold text-blue-600'>Devnet</span>
+              Xarxa: <span className='font-semibold' style={{ color: '#8B7355' }}>Devnet</span>
             </p>
           </div>
         </div>

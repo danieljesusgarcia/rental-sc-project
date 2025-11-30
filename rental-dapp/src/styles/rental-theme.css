@@ -23,12 +23,24 @@
   --color-success: #7C9885;        /* Verd sàlvia */
   --color-warning: #D4A373;        /* Terra cuita */
   --color-error: #A65959;          /* Vermell apagat */
-  --color-info: #7D9BA6;           /* Blau grisós */
+  --color-info: #8B7355;           /* Marró primari (abans blau) */
   
   /* Ombres suaus */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  
+  /* Aliases Tailwind compatibles */
+  --tw-color-primary-50: #FAF9F7;
+  --tw-color-primary-100: #F0EBE5;
+  --tw-color-primary-200: #E0D5C9;
+  --tw-color-primary-300: #C9B8A0;
+  --tw-color-primary-400: #A68968;
+  --tw-color-primary-500: #8B7355;
+  --tw-color-primary-600: #6B5943;
+  --tw-color-primary-700: #4D3F2F;
+  --tw-color-primary-800: #32291E;
+  --tw-color-primary-900: #1A1510;
 }
 
 /* Reset i base */
