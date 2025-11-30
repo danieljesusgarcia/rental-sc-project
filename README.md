@@ -85,6 +85,18 @@ graph LR
 - MultiversX SDK (`mxpy`)
 - `sc-meta` tool
 
+### Entorn de Desenvolupament
+
+Aquest projecte s'ha desenvolupat utilitzant:
+- **IDE**: Visual Studio Code
+- **Extensions**: GitHub Copilot
+- **Dev Container**: MultiversX Smart Contracts
+  - Ubuntu 22.04.5 LTS
+  - Rust 1.86.0 preinstal·lat
+  - MultiversX SDK (`mxpy`) i `sc-meta`
+  - Node.js i npm per al frontend
+  - Docker CLI per a gestió de contenidors
+
 ### Build
 
 ```bash
@@ -394,13 +406,14 @@ Aquest projecte està sota llicència MIT. Consulta el fitxer `LICENSE` per més
 ## Autor
 
 - **Daniel Garcia** - Desenvolupament inicial
+- Desenvolupat amb l'assistència de **GitHub Copilot** (Claude Sonnet 4.5)
+
 
 ## 🔗 Enllaços
 
 ### Recursos MultiversX
 - [MultiversX Docs](https://docs.multiversx.com/)
 - [Rust Smart Contracts Guide](https://docs.multiversx.com/developers/developer-reference/sc-api-functions/)
-- [MultiversX Explorer](https://explorer.multiversx.com/)
 - [MultiversX Devnet Explorer](https://devnet-explorer.multiversx.com/)
 
 ---
