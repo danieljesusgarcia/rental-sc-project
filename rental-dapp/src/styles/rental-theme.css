@@ -1,0 +1,218 @@
+/* Tema minimalista per a aplicació de lloguer de propietats */
+
+:root {
+  /* Colors principals - tons naturals i càlids */
+  --color-primary: #8B7355;        /* Marró càlid (fusta) */
+  --color-primary-light: #A68968;
+  --color-primary-dark: #6B5943;
+  
+  --color-secondary: #C9B8A0;      /* Beix suau */
+  --color-accent: #D4AF37;         /* Or apagat */
+  
+  /* Tons neutres */
+  --color-bg: #FAF9F7;             /* Blanc trencat */
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F5F3F0;
+  
+  /* Text */
+  --color-text-primary: #2C2C2C;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: #9B9B9B;
+  
+  /* Estats */
+  --color-success: #7C9885;        /* Verd sàlvia */
+  --color-warning: #D4A373;        /* Terra cuita */
+  --color-error: #A65959;          /* Vermell apagat */
+  --color-info: #7D9BA6;           /* Blau grisós */
+  
+  /* Ombres suaus */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset i base */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+/* Cards amb estil minimalista */
+.card {
+  background: var(--color-surface);
+  border: 1px solid #E8E5E0;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-secondary);
+}
+
+/* Botons minimalistes */
+.btn {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  border: none;
+  padding: 0.625rem 1.25rem;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* Títols amb tipografia elegant */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Inputs minimalistes */
+input, textarea, select {
+  border: 1px solid #E8E5E0 !important;
+  background-color: var(--color-surface) !important;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-primary) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1) !important;
+}
+
+/* Estats del contracte amb colors suaus */
+.status-pending {
+  background-color: #FFF8E1;
+  color: #8B7A4F;
+  border: 1px solid #FFE7A0;
+}
+
+.status-active {
+  background-color: #E8F5E9;
+  color: #527A5A;
+  border: 1px solid #B8E6BD;
+}
+
+.status-completed {
+  background-color: #E3F2FD;
+  color: #5B7C8C;
+  border: 1px solid #B3D9F2;
+}
+
+.status-dispute {
+  background-color: #FFEBEE;
+  color: #8C5555;
+  border: 1px solid #F5C3C8;
+}
+
+.status-finalized {
+  background-color: #F5F5F5;
+  color: #5C5C5C;
+  border: 1px solid #D8D8D8;
+}
+
+/* Navegació minimalista */
+nav a {
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--color-primary);
+}
+
+/* Separadors subtils */
+hr, .divider {
+  border-color: #E8E5E0;
+  opacity: 0.6;
+}
+
+/* Badges i pills */
+.badge, .pill {
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Loader minimalista */
+.animate-spin {
+  border-color: var(--color-primary-light);
+  border-top-color: var(--color-primary);
+}
+
+/* Efectes hover suaus */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Grid amb espais respirables */
+.grid-cards {
+  gap: 1.5rem;
+}
+
+/* Accents decoratius */
+.accent-border-left {
+  border-left: 3px solid var(--color-primary);
+}
+
+.accent-border-top {
+  border-top: 3px solid var(--color-primary);
+}
+
+/* Text amb colors del tema */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary) !important;
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+/* Backgrounds */
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-accent {
+  background-color: var(--color-bg);
+}
+
+/* Transicions suaus globals */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

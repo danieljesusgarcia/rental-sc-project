@@ -1,0 +1,50 @@
+# Rust / Cargo
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# MultiversX Smart Contract
+output/*.wasm
+output/*.abi.json
+output/*.mxsc.json
+output/*.imports.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# PEM files (private keys)
+*.pem
+wallet*.pem
+
+# Test outputs
+tests/*.txt
+scenarios/*.scen.json.output
+
+# Build artifacts
+*.wat
+*.wasm
+*.abi.json
+*.imports.json
+
+# Documentation build
+docs/target/
+
+# Node modules (si hi ha scripts)
+node_modules/
+
+# System files
+Thumbs.db

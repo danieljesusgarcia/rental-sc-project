@@ -1,0 +1,272 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.86.0",
+            "commitHash": "05f9846f893b09a1be1fc8560e33fc3c815cfecb",
+            "commitDate": "2025-03-31",
+            "channel": "Stable",
+            "short": "rustc 1.86.0 (05f9846f8 2025-03-31)"
+        },
+        "contractCrate": {
+            "name": "rental-contract",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.59.1"
+        }
+    },
+    "docs": [
+        "Sistema de gestió de contractes de lloguer sense intermediaris"
+    ],
+    "name": "RentalContract",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "docs": [
+                "Crea un nou contracte de lloguer"
+            ],
+            "name": "createRentalContract",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "tenant",
+                    "type": "Address"
+                },
+                {
+                    "name": "deposit_amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "monthly_rent",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "duration_months",
+                    "type": "u64"
+                },
+                {
+                    "name": "contract_reference",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "docs": [
+                "El tenant accepta el contracte i paga la fiança"
+            ],
+            "name": "acceptContract",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "docs": [
+                "Realitza un pagament periòdic del lloguer"
+            ],
+            "name": "makePayment",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "docs": [
+                "El propietari indica si vol retornar la fiança al llogater"
+            ],
+            "name": "landlordDecision",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "return_deposit",
+                    "type": "bool"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "docs": [
+                "El llogater indica si vol rebre la fiança de tornada"
+            ],
+            "name": "tenantDecision",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "return_deposit",
+                    "type": "bool"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "docs": [
+                "Obté els detalls d'un contracte"
+            ],
+            "name": "getContractDetails",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Address"
+                },
+                {
+                    "type": "Address"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "BigUint"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "bytes"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
+                },
+                {
+                    "type": "u8"
+                }
+            ]
+        },
+        {
+            "docs": [
+                "Obté els contractes d'un propietari"
+            ],
+            "name": "getContractsByLandlord",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "landlord",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<u64>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "docs": [
+                "Obté els contractes d'un llogater"
+            ],
+            "name": "getContractsByTenant",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "tenant",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<u64>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "docs": [
+                "Obté l'estat de les decisions sobre la fiança"
+            ],
+            "name": "getDepositDecisionDetails",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u8"
+                },
+                {
+                    "type": "u8"
+                },
+                {
+                    "type": "u8"
+                },
+                {
+                    "type": "u8"
+                }
+            ]
+        },
+        {
+            "docs": [
+                "Obté l'estat dels pagaments d'un contracte"
+            ],
+            "name": "getPaymentsStatus",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "contract_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "optional<tuple<u64,u64>>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}
