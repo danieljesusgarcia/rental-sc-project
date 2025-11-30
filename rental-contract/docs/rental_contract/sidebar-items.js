@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["ContractStatus"],"fn":["contract_obj"],"mod":["__wasm__endpoints__"],"struct":["AbiProvider","ContractBuilder","ContractObj","DepositDecision","Proxy","ProxyTo","RentalContractData"],"trait":["AutoImpl","EndpointWrappers","ProxyTrait","RentalContract"]};

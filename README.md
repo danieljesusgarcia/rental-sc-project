@@ -139,7 +139,7 @@ mxpy contract upgrade <hash_contracte> \
 
 ## Documentació tècnica del contracte
 
-- **[Documentació Rustdoc](rental-contract/docs/rental_contract/index.html)** - Documentació completa del codi font
+- **[Documentació Rustdoc](rental_contract/)** - Documentació completa del codi font
 
 ## Clients Disponibles
 
@@ -217,11 +217,6 @@ rental-sc-project/
     │   ├── rental-contract.wasm        # Contracte compilat
     │   ├── rental-contract.abi.json    # ABI del contracte
     │   └── rental-contract.mxsc.json   # Metadata del contracte
-│   ├── docs/                           # Documentació Rustdoc generada
-│   │   └── rental_contract/
-│   │       ├── index.html              # Entrada de la documentació
-│   │       ├── struct.RentalContractData.html
-│   │       └── ...                     # Documentació completa
 │   ├── meta/                           # Meta crate per builds
 │   ├── wasm/                           # Wasm builder crate
 │   ├── client.sh                       # Script CLI d'interacció

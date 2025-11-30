@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["accept_contract","callBack","create_rental_contract","get_contract_details","get_contracts_by_landlord","get_contracts_by_tenant","get_deposit_decision_details","get_payments_status","init","landlord_decision","make_payment","tenant_decision","upgrade"]};
