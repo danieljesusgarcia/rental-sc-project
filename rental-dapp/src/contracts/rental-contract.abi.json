@@ -260,8 +260,10 @@
             ],
             "outputs": [
                 {
-                    "type": "optional<tuple<u64,u64>>",
-                    "multi_result": true
+                    "type": "u64"
+                },
+                {
+                    "type": "u64"
                 }
             ]
         }

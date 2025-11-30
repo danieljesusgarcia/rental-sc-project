@@ -4,7 +4,7 @@ Sistema descentralitzat de gestió de contractes de lloguer a la blockchain Mult
 
 [![MultiversX](https://img.shields.io/badge/MultiversX-Devnet-blue)](https://devnet-explorer.multiversx.com/accounts/)
 [![Rust](https://img.shields.io/badge/Rust-1.86.0-orange)](https://www.rust-lang.org/)
-[![Contract Size](https://img.shields.io/badge/Contract%20Size-7461%20bytes-green)](output/rental-contract.wasm)
+[![Contract Size](https://img.shields.io/badge/Contract%20Size-7454%20bytes-green)](output/rental-contract.wasm)
 
 ## Descripció
 
@@ -212,10 +212,10 @@ rental-sc-project/
 │   │   └── rental_contract_scenario_go_test.rs
 │   ├── scenarios/
 │   │   └── rental_contract.scen.json   # Escenaris de test
-│   ├── output/
-│   │   ├── rental-contract.wasm        # Contracte compilat (7461 bytes)
-│   │   ├── rental-contract.abi.json    # ABI del contracte
-│   │   └── rental-contract.mxsc.json   # Metadata del contracte
+    ├── output/
+    │   ├── rental-contract.wasm        # Contracte compilat
+    │   ├── rental-contract.abi.json    # ABI del contracte
+    │   └── rental-contract.mxsc.json   # Metadata del contracte
 │   ├── docs/                           # Documentació Rustdoc generada
 │   │   └── rental_contract/
 │   │       ├── index.html              # Entrada de la documentació

@@ -328,16 +328,11 @@ pub trait RentalContract {
 
     /// Obté l'estat dels pagaments d'un contracte
     #[view(getPaymentsStatus)]
-    fn get_payments_status(&self, contract_id: u64) -> OptionalValue<(u64, u64)> {
-        if self.contracts(contract_id).is_empty() {
-            OptionalValue::None
-        } else {
-            let contract = self.contracts(contract_id).get();
-            OptionalValue::Some((
-                contract.payments_made,
-                contract.total_payments_expected,
-            ))
-        }
+    fn get_payments_status(&self, contract_id: u64) -> MultiValue2<u64, u64> {
+        require!(!self.contracts(contract_id).is_empty(), "Contract does not exist");
+        
+        let contract = self.contracts(contract_id).get();
+        (contract.payments_made, contract.total_payments_expected).into()
     }
 
     // ========== STORAGE ==========

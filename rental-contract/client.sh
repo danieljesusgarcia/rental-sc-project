@@ -352,11 +352,11 @@ get_payments_status() {
     --proxy $PROXY 2>/dev/null)
   
   if [[ $? -eq 0 ]]; then
-    # Extreure els valors del returnData (només 2 u64: payments_made i total_payments)
+    # Amb MultiValueEncoded, cada valor ve en una posició separada de l'array
     payments_made_hex=$(echo "$result" | jq -r '.[0]' 2>/dev/null)
     total_payments_hex=$(echo "$result" | jq -r '.[1]' 2>/dev/null)
     
-    if [[ -n "$payments_made_hex" && "$payments_made_hex" != "null" ]]; then
+    if [[ -n "$payments_made_hex" && "$payments_made_hex" != "null" && "$payments_made_hex" != "" ]]; then
       # Convertir hex a decimal
       payments_made=$(hex_to_decimal "$payments_made_hex")
       total_payments=$(hex_to_decimal "$total_payments_hex")
