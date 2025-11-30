@@ -61,6 +61,7 @@ jobs:
           cp -r rental-contract/target/doc _site/docs
           cp -r rental-dapp/build _site/app
           echo '<html><head><meta http-equiv="refresh" content="0;url=/rental-sc-project/app/"></head></html>' > _site/index.html
+          echo '<html><head><meta http-equiv="refresh" content="0;url=/rental-sc-project/docs/rental_contract/"></head></html>' > _site/docs/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
