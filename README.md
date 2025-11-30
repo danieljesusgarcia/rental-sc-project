@@ -1,6 +1,7 @@
 # Rental Contract - Smart Contract de Lloguer
 
 Sistema descentralitzat de gestió de contractes de lloguer a la blockchain MultiversX, sense intermediaris.
+> **Projecte desenvolupat en el curs "Blockchain a l'FP (3a ed)"**
 
 [![MultiversX](https://img.shields.io/badge/MultiversX-Devnet-blue)](https://devnet-explorer.multiversx.com/accounts/)
 [![Rust](https://img.shields.io/badge/Rust-1.86.0-orange)](https://www.rust-lang.org/)
@@ -148,9 +149,9 @@ mxpy contract upgrade <hash_contracte> \
 - **SDK**: @multiversx/sdk-dapp 3.1.6, @multiversx/sdk-core 13.16.0
 - **Característiques**:
   - Interfície web reactiva
-  - Connexió amb DeFi Wallet, xPortal, Ledger
-  - Dashboard amb totes les funcionalitats del contracte
-  - Gestió visual de contractes com a propietari o llogater
+  - Connexió amb Web Wallet
+  - Dashboard amb totes les funcionalitats del contracte, dades del contracte i últimes transaccions
+  - Gestió visual de contractes com a propietari o llogater: creació, acceptació, pagament, decisió
   - Notificacions de transaccions en temps real
 - **Instal·lació**:
   ```bash
