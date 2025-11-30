@@ -58,7 +58,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r rental-contract/target/doc _site/docs
-          cp -r rental-dapp/dist _site/app
+          cp -r rental-dapp/build _site/app
           echo '<html><head><meta http-equiv="refresh" content="0;url=/rental-sc-project/app/"></head></html>' > _site/index.html
 
       - name: Setup Pages
