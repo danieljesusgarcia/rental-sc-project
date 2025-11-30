@@ -169,7 +169,9 @@ mxpy contract upgrade <hash_contracte> \
 ![alt text](images/payment_inprogress.png)
 ![alt text](images/deposit_claim.png)
 
-- **URL en local**: http://localhost:3000 (devnet)
+**URLs:**
+- **Producció (GitHub Pages)**: [https://danieljesusgarcia.github.io/rental-sc-project/app/](https://danieljesusgarcia.github.io/rental-sc-project/app/)
+- **Local (desenvolupament)**: http://localhost:3000 (devnet)
 
 ### Client CLI (Shell Script)
 
