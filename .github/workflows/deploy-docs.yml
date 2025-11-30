@@ -1,4 +1,4 @@
-name: Deploy Rustdoc to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -35,13 +35,39 @@ jobs:
           cd rental-contract
           cargo doc --no-deps
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: rental-dapp/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd rental-dapp
+          npm ci
+
+      - name: Build dApp
+        run: |
+          cd rental-dapp
+          npm run build:devnet
+        env:
+          NODE_ENV: production
+
+      - name: Combine artifacts
+        run: |
+          mkdir -p _site
+          cp -r rental-contract/target/doc _site/docs
+          cp -r rental-dapp/dist _site/app
+          echo '<html><head><meta http-equiv="refresh" content="0;url=/rental-sc-project/app/"></head></html>' > _site/index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'rental-contract/target/doc'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

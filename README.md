@@ -139,7 +139,7 @@ mxpy contract upgrade <hash_contracte> \
 
 ## Documentació tècnica del contracte
 
-- **[Documentació Rustdoc](https://danieljesusgarcia.github.io/rental-sc-project/rental_contract/)** - Documentació completa del codi font
+- **[Documentació Rustdoc](https://danieljesusgarcia.github.io/rental-sc-project/docs/rental_contract/)** - Documentació completa del codi font
 
 ## Clients Disponibles
 
