@@ -53,6 +53,7 @@ jobs:
           npm run build:devnet
         env:
           NODE_ENV: production
+          VITE_BASE_PATH: /rental-sc-project/app/
 
       - name: Combine artifacts
         run: |
