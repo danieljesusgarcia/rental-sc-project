@@ -7,7 +7,8 @@ import { RouteNamesEnum } from 'localConstants';
 import MultiversXLogo from '../../../assets/img/multiversx-logo.svg?react';
 import { useMatch, useNavigate } from 'react-router-dom';
 
-const callbackUrl = `${window.location.origin}/#/unlock`;
+const basePath = import.meta.env.VITE_BASE_PATH || '/';
+const callbackUrl = `${window.location.origin}${basePath}#/unlock`;
 const onRedirect = undefined; // use this to redirect with useNavigate to a specific page after logout
 const shouldAttemptReLogin = false; // use for special cases where you want to re-login after logout
 const options = {
